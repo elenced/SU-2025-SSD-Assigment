@@ -55,7 +55,7 @@ Option 2:
 If you have already have Git installed on your computer open your terminal in Visual Studio and run the following:
 git clone https://github.com/elenced/SU-2025-SSD-Assigment.git
 
-After deciding one or the other option you will end up running the solution within Visual Studio code by pressing Ctrl + F5, if all was downloaded correctly you should be greeted by a UI. Similar to this as shown below:
+After deciding one or the other option you will end up running the solution within Visual Studio code, if all was downloaded correctly you should be greeted by a UI. Similar to this as shown below:
 
 ===== Player Statistics Manager =====
 1. Add New Player
@@ -65,8 +65,8 @@ After deciding one or the other option you will end up running the solution with
 5. Generate Report
 6. Exit
 
-Use the corresponding number keys to navigate the menu.  When the user exists the program all player data is automatically saved to a JSON file. Then, a log entry is recorded in `activity_log.txt`.
-All player data is stored frequently in a JSON file (`players.json`). Key actions are logged to a text file (`activity_log.txt`) to meet file I/O and persistence requirements.
+Use the corresponding number keys to navigate the menu.  When the user exists the program all player data is automatically saved to a JSON file. Then, a log entry is recorded in the 'activity_log.txt' file.
+All player data is stored frequently in a JSON file (players.json). Key actions are logged to a text file (activity_log.txt) to meet file I/O and persistence requirements.
 
 ──────‧₊˚ Design Choices and Justification ‧₊──────
 
