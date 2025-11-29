@@ -1,10 +1,16 @@
 ﻿using System;
+using PlayerStatsApp.Controllers;
+using PlayerStatsApp.Models;
+
+PlayerController playerManager = new PlayerController(); // creating an instance of the PlayerController to manage player operations
+int nextPlayerID = 1; // initializing a variable to assign unique IDs to new players, so each player can be identified distinctly
+
 
 bool running = true; // creating a boolean to control the menu loop
 
 while (running)
 {
-    Console.WriteLine("──────‧₊˚ Player Statistics Manager ‧₊──────");
+    Console.WriteLine("「❤ Player Statistics Manager ❤」");
     Console.WriteLine("1. Add New Player");
     Console.WriteLine("2. View Players");
     Console.WriteLine("3. Update Player Stats");
@@ -18,7 +24,22 @@ while (running)
     switch (choice) // using the switch statment for the menu, avoiding the complexity of multiple if-else statements
     {
         case "1":
-            Console.WriteLine("Adding a new player...");
+            Console.WriteLine("─── ⋆⋅ Add a new player! ⋅⋆ ───");
+            Console.Write("Enter player Username: ");
+            string username = Console.ReadLine(); // reading the username input from the user
+
+            Console.Write("Enter hours played: ");
+            double hoursPlayed = Convert.ToDouble(Console.ReadLine()); // reading and converting hours played input to double
+
+            Console.Write("Enter high score: ");
+            int highScore = Convert.ToInt32(Console.ReadLine()); // reading and converting high score input to int
+
+            Player newPlayer = new Player(nextPlayerID, username, hoursPlayed, highScore); // creating a new player object with the provided details, using model layer to represent the player
+
+            playerManager.AddPlayer(newPlayer); // adding the new player to the player manager, using controller layer to handle the addition
+
+            nextPlayerID++; // incrementing the player ID for the next new player
+            Console.WriteLine("[■■■■■■■■■] 100%! Player added successfully!");
             break;
         case "2":
             Console.WriteLine("Viewing players...");
