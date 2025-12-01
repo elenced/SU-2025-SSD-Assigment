@@ -10,6 +10,8 @@ bool running = true; // creating a boolean to control the menu loop
 
 while (running)
 {
+    Console.ForegroundColor = ConsoleColor.Magenta; // setting the console text color to cyan for aethetics
+
     Console.WriteLine("─── ⋅ Player Statistics Manager ⋅ ───");
     Console.WriteLine("1. Add New Player");
     Console.WriteLine("2. View Players");
@@ -18,6 +20,7 @@ while (running)
     Console.WriteLine("5. Generate Report");
     Console.WriteLine("6. Leave Application");
     Console.Write("Select an option (1-6): ");
+    Console.ResetColor();
 
     string choice = Console.ReadLine(); // number gets stored into the choice variable
 
@@ -54,7 +57,10 @@ while (running)
             {
                 foreach (var player in players) // iterating through each player and displaying their details
                 {
-                    Console.WriteLine($"ID: {player.Id}, Username: {player.Username}, Hours Played: {player.HoursPlayed}, High Score: {player.HighScore}");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine($"ID: {player.Id} | Username: {player.Username}");
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.WriteLine ($"Hours Played: {player.HoursPlayed} | High Score: {player.HighScore}");
                 }
             }
             break;

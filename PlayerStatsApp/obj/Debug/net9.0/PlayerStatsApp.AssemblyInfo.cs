@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PlayerStatsApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9ac73b71cbdc8b7ab7e210a8217ea5eb76d82e70")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+680af35e6f0a689073d24b0260566f1d0bcc3bec")]
 [assembly: System.Reflection.AssemblyProductAttribute("PlayerStatsApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PlayerStatsApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
