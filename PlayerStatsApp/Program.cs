@@ -27,6 +27,7 @@ while (running)
     switch (choice) // using the switch statment for the menu, avoiding the complexity of multiple if-else statements
     {
         case "1":
+            Console.Clear(); // clearing the console for better readability
             Console.WriteLine("─── ⋅ Add a new player! ⋅ ───");
             Console.Write("Enter player Username: ");
             string username = Console.ReadLine(); // reading the username input from the user
@@ -45,6 +46,7 @@ while (running)
             Console.WriteLine("[■■■■■■■■■] 100%! Player added successfully!");
             break;
         case "2":
+            Console.Clear();
             Console.WriteLine("─── ⋅ View all  players! ⋅ ───");
 
             var players = playerManager.GetAllPlayers(); // retrieving all players from the player Manager
@@ -68,9 +70,30 @@ while (running)
             Console.WriteLine("Updating player stats...");
             break;
         case "4":
-            Console.WriteLine("Searching player by ID...");
+            Console.WriteLine("─── ⋅ Search for a Player by ID ⋅ ───");
+
+            Console.Write("Enter Player ID to search: ");
+            int searchId = Convert.ToInt32(Console.ReadLine()); // reading and converting the player ID input to int
+
+            var foundPlayer = playerManager.GetPlayerById(searchId); // searching for the player by ID using the player manager
+            if (foundPlayer != null)
+            {
+                Console.WriteLine("Player found:");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine($"ID: {foundPlayer.Id} | Username: {foundPlayer.Username}");
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine ($"Hours Played: {foundPlayer.HoursPlayed} | High Score: {foundPlayer.HighScore}");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Player not found! Please re-try.");
+                Console.ResetColor();
+            }
+
             break;
         case "5":
+
 
             Console.WriteLine("Generating report...");
             break;
