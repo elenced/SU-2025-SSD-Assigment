@@ -67,7 +67,54 @@ while (running)
             }
             break;
         case "3":
-            Console.WriteLine("Updating player stats...");
+            Console.Clear();
+            Console.WriteLine("─── ⋅ Update Player Stats ⋅ ───");
+            Console.Write("Enter Player ID to update: ");
+            string updateIdInput = Console.ReadLine();
+
+            if (!int.TryParse(updateIdInput, out int updateId)) // using inttryparse to convert string into integer and handle invalid input effectively, prevents crashing + allows for easy testing
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid ID. Returning to menu.");
+                Console.ResetColor();
+                break;
+            }
+
+            Player? playerToUpdate = playerManager.GetPlayerById(updateId); // searching for the player by ID using the player manager, uses Player? as it may return null, displaying search algorithm on data
+            if (playerToUpdate == null)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Player not found! Please re-try.");
+                Console.ResetColor();
+                break;
+            }
+            
+            Console.WriteLine($"Current stats for {playerToUpdate.Username}: Hours Played - {playerToUpdate.HoursPlayed}, High Score - {playerToUpdate.HighScore}");
+
+            Console.Write("Enter additional hours played: ");
+            string hoursInput = Console.ReadLine();
+
+            if (!double.TryParse(hoursInput, out double additionalHours))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid hours input. Stats not updated.");
+                Console.ResetColor();
+                break;
+            }
+
+            Console.Write("Enter new high score: ");
+            string scoreInput = Console.ReadLine();
+
+            if (!int.TryParse(scoreInput, out int newHighScore)) // using the out keyword to store the parsed integer value directly into newHighScore variable, using ! to check for invalid input, shows error is so
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid score input. Stats not updated.");
+                Console.ResetColor();
+                break;
+            }
+
+            playerToUpdate.UpdateStats(additionalHours, newHighScore); // calls player model to add/update the stats, using encapsulation as the ui doesnst change properties directly
+            Console.WriteLine("Player stats updated successfully!");
             break;
         case "4":
             Console.WriteLine("─── ⋅ Search for a Player by ID ⋅ ───");
