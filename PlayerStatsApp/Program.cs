@@ -4,17 +4,13 @@ using PlayerStatsApp.Models;
 using PlayerStatsApp.Services;
 
 FileController fileController = new FileController("players.json"); // creating an instance of the FileController to handle file operations
+PlayerController playerManager = new PlayerController(); // manages player in memory
 
 var existingPlayers = fileController.LoadPlayers(); // loading existing players from the file using the file controller
 playerManager.LoadPlayers(existingPlayers); // loading the existing players into the player manager
 
-int nextPlayerID = existingPlayersPlayers.Count + 1; // initializing a variable to assign unique IDs to new players, so each player can be identified distinctly
-bool running = true; // creating a boolean to control the menu loop
 
-PlayerController playerManager = new PlayerController(); // creating an instance of the PlayerController to manage player operations
-int nextPlayerID = 1; // initializing a variable to assign unique IDs to new players, so each player can be identified distinctly
-
-
+int nextPlayerID = existingPlayers.Count + 1; // initializing a variable to assign unique IDs to new players, so each player can be identified distinctly
 bool running = true; // creating a boolean to control the menu loop
 
 while (running)
