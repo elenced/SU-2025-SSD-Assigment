@@ -1,15 +1,17 @@
+using System.Collections.Generic;
+
 namespace PlayerStatsApp.Models
 {
     public class GameStats
     {
-        public string GameName { get; set; }    
-        public int HighestScore { get; set;  }
+        public string GameName { get; set; }  = string.Empty;
+        public int HighScore { get; set;  }
         public double HoursPlayed { get; set; }
 
         public GameStats() {}
 
 
-        public static List<string> GameList = new List<string>
+        public static List<string> AvailableGames = new List<string>
         {
             "Rivals of Ether",
             "Cyber Quest",
@@ -19,11 +21,16 @@ namespace PlayerStatsApp.Models
         };
 
 
-        public GameStats(string gameName, int highestScore, double hoursPlayed)
+        public GameStats(string gameName, int highScore, double hoursPlayed)
         {
             GameName = gameName;
-            HighestScore = highestScore;
+            HighScore = highScore;
             HoursPlayed = hoursPlayed;
+        }
+
+        public override string ToString()
+        {
+            return $"Game: {GameName}, Highest Score: {HighScore}, Hours Played: {HoursPlayed}";
         }
     }
 }

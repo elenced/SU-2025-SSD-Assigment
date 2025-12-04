@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+
+
 namespace PlayerStatsApp.Models; // creating a namespace to practice oop for better code organisation
 
 public class Player
@@ -14,6 +17,8 @@ public class Player
         HoursPlayed = hoursPlayed;
         HighScore = highScore;
     }
+     
+    public List<GameStats> GameStatistics { get; set; } = new List<GameStats>(); // initializing the list to avoid null reference issues
 
     public void UpdateStats(double additionalHours, int newHighScore)
     {

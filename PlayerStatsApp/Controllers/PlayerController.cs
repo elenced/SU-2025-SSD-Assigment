@@ -1,5 +1,6 @@
 using PlayerStatsApp.Models; //importing the player class so it can be used here
 using System.Collections.Generic; // importing the generic collections namespace to use lists
+using System.Linq; // importing linq to use linq methods like FirstOrDefault
 
 
 namespace PlayerStatsApp.Controllers // creating a namespace for controllers to manage different aspects of the application

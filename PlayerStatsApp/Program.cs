@@ -7,13 +7,6 @@ using PlayerStatsApp.Services;
 FileController fileController = new FileController("players.json"); // creating an instance of the FileController to handle file operations
 PlayerController playerManager = new PlayerController(); // manages player in memory
 PlayerReport reportGenerator = new PlayerReport(); // creating an instance of the PlayerReport to handle report generation
-List<string> GameList = new List<string>
-{
-    "Rivals of Ether",
-    "Cyber Quest",
-    "Gate 3",
-    "Crossing Paths"
-};
 
 var existingPlayers = fileController.LoadPlayers(); // loading existing players from the file using the file controller
 playerManager.LoadPlayers(existingPlayers); // loading the existing players into the player manager
@@ -47,6 +40,24 @@ while (running)
             Console.Write("Enter player Username: ");
             string username = Console.ReadLine(); // reading the username input from the user
 
+            Console.WriteLine("Games to add to your library:");
+            for (int i = 0; i < GameStats.AvailableGames.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {GameStats.AvailableGames[i]}");
+            }
+
+            Console.Write("Select a game (1-" + GameStats.AvailableGames.Count + "):");
+            string gameChoiceInput = Console.ReadLine();
+
+            if (!int.TryParse(gameChoiceInput, out int gameChoice) || gameChoice < 1 || gameChoice > GameStats.AvailableGames.Count)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid game selection. Player not added, please try again.");
+                Console.ResetColor();
+                break;
+            }
+            string selectedGame = GameStats.AvailableGames[gameChoice - 1];
+
             Console.Write("Enter hours played: ");
             string hoursInput = Console.ReadLine();
 
@@ -72,15 +83,19 @@ while (running)
             Player newPlayer = new Player(nextPlayerID, username, hoursPlayed, highScore); // creating a new player object with the provided details, using model layer to represent the player
 
             playerManager.AddPlayer(newPlayer); // adding the new player to the player manager, using controller layer to handle the addition
+           
+            var gameStat = new GameStats(selectedGame, highScore, hoursPlayed); 
+            newPlayer.GameStatistics.Add(gameStat); // adding the game statistics to the player's game statistics list
+
 
             fileController.SavePlayers(playerManager.GetAllPlayers()); // saving all players to the file after adding a new player, ensuring data persistence
 
-            playerManager.AddPlayer(newPlayer); 
-            fileController.SavePlayers(playerManager.GetAllPlayers()); // saving all players to the file after adding a new player, ensuring data persistence
-
+    
             nextPlayerID++; // incrementing the player ID for the next new player
             Console.WriteLine("[■■■■■■■■■] 100%! Player added successfully!");
             break;
+
+
         case "2":
             Console.Clear();
             Console.WriteLine("─── ⋅ View all  players! ⋅ ───");
@@ -99,6 +114,22 @@ while (running)
                     Console.WriteLine($"ID: {player.Id} | Username: {player.Username}");
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine ($"Hours Played: {player.HoursPlayed} | High Score: {player.HighScore}");
+
+                    if (player.GameStatistics != null && player.GameStatistics.Count > 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Games:");
+
+                        foreach (var stat in player.GameStatistics)
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            Console.WriteLine($"     - {stat.GameName}: Hours Played - {stat.HoursPlayed}, High Score - {stat.HighScore}");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("   No game specific stats recorded for this player.");
+                    }
                 }
             }
             break;
