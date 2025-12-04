@@ -13,6 +13,7 @@ playerManager.LoadPlayers(existingPlayers); // loading the existing players into
 int nextPlayerID = existingPlayers.Count + 1; // initializing a variable to assign unique IDs to new players, so each player can be identified distinctly
 bool running = true; // creating a boolean to control the menu loop
 
+
 while (running)
 {
     Console.ForegroundColor = ConsoleColor.Magenta; // setting the console text color to cyan for aethetics
@@ -46,6 +47,8 @@ while (running)
             Player newPlayer = new Player(nextPlayerID, username, hoursPlayed, highScore); // creating a new player object with the provided details, using model layer to represent the player
 
             playerManager.AddPlayer(newPlayer); // adding the new player to the player manager, using controller layer to handle the addition
+
+            fileController.SavePlayers(playerManager.GetAllPlayers()); // saving all players to the file after adding a new player, ensuring data persistence
 
             nextPlayerID++; // incrementing the player ID for the next new player
             Console.WriteLine("[■■■■■■■■■] 100%! Player added successfully!");
