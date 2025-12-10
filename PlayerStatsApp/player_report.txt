@@ -1,12 +1,13 @@
 ─── ⋅ Player Statistics Summary ⋅ ───
-Generated on: 05 December 2025 17:35:36
-Total Players: 3
-Average Hours Played: 261.67
-Average High Score: 800.00
+Generated on: 10 December 2025 21:25:24
+Total Players: 4
+Average Hours Played: 197.75
+Average High Score: 851.25
 Top Scorer: janedoe with a score of 1200
 Most Active Player: janedoe with 408 hours played
 ────────────────────────────────────
 Players by Hours Played:
 - janedoe | Hours: 408.0 | High Score: 1200
-- johndoe | Hours: 302.0 | High Score: 900
+- johndoe | Hours: 304.0 | High Score: 905
 - jamesdoe | Hours: 75.0 | High Score: 300
+- reedy | Hours: 4.0 | High Score: 1000

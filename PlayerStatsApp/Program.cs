@@ -174,7 +174,7 @@ while (running)
     }
 
 
-    GameStats selectedGameStats;
+    GameStats? selectedGameStats = null;
 
     Console.WriteLine("Update either existing game stats or add new game stats.");
     Console.WriteLine("1. Update Existing Game Stats");
@@ -200,7 +200,7 @@ while (running)
         if (newGameChoice == "0")
         {
             Console.WriteLine("Cancelled adding new game stats. Returning to main menu.");
-            return; // or 'break;' if you want to just exit case "3"
+            break;
         }
 
         if (!int.TryParse(newGameChoice, out int newGameIndex) ||
@@ -330,7 +330,7 @@ while (running)
             }
             else
             {
-             foundPlayer = playerManager.GetPlayerByUsername(searchInput); // asking the controller to get the player by username
+             foundPlayer = playerManager.LinearSearchByUsername(searchInput); 
             }
             
         
@@ -363,7 +363,7 @@ while (running)
                 Console.WriteLine("No players available to generate report, please add players first.");
                 Console.ResetColor();
             }
-            
+            else
             {
                 reportGenerator.GenerateSummary(allPlayerForReport);  // generating the player report using the PlayerReport service
                 logger.Log("Player report generated successfully.");

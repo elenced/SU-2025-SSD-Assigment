@@ -47,5 +47,23 @@
         "HoursPlayed": 10
       }
     ]
+  },
+  {
+    "Id": 4,
+    "Username": "reedy",
+    "HoursPlayed": 4,
+    "HighScore": 1000,
+    "GameStatistics": [
+      {
+        "GameName": "Mystic Lands",
+        "HighScore": 1000,
+        "HoursPlayed": 4
+      },
+      {
+        "GameName": "Rivals of Ether",
+        "HighScore": 0,
+        "HoursPlayed": 0
+      }
+    ]
   }
 ]

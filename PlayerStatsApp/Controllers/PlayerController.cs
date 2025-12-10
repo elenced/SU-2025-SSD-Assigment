@@ -1,6 +1,7 @@
 using PlayerStatsApp.Models; //importing the player class so it can be used here
 using System.Collections.Generic; // importing the generic collections namespace to use lists
-using System.Linq; // importing linq to use linq methods like FirstOrDefault
+using System.Linq;
+using System.Reflection.Metadata.Ecma335; // importing linq to use linq methods like FirstOrDefault
 
 
 namespace PlayerStatsApp.Controllers // creating a namespace for controllers to manage different aspects of the application
@@ -47,7 +48,40 @@ namespace PlayerStatsApp.Controllers // creating a namespace for controllers to 
         // search player by ID
         public Player? GetPlayerById(int id) // using Player? method to return only one player based on their unique ID, returns null if not found, the parameter represtns the id of the player to returns, use ? in Player? to return null if the id is invalid
         {
-            return players.FirstOrDefault(p => p.Id == id); // using a c# sharp method to seach for player by id, returns null if not found
+            return players.FirstOrDefault(p => p.Id == id); // using a c# sharp method to seach for player by id, returns null if not found - // explation of the equation: p refers to a player in the list, the lambda expression checks if the player's id matches the provided id
         }
-    } // explation of the equation: p refers to a player in the list, the lambda expression checks if the player's id matches the provided id
+
+        public Player? LinearSearchByUsername(string username)
+        {
+            foreach (var player in players)
+            {
+                if (string.Equals(player.Username, username, StringComparison.OrdinalIgnoreCase))
+                {
+                    return player;
+                }
+            }
+            return null;
+        }
+
+        public List<Player> GetPlayersSortedByHighScoreManual()
+        {
+            var sorted = new List<Player>(players); // create a copy of the original list to sort so it doesnt mutate the original list
+
+            for int i = 0; i < sorted.Count - 1; i++)
+            {
+                for (int j = 0; j < sorted.Count - i - 1; j++)
+                {
+                    if (sorted[j].HighScore < sorted[j + 1].HighScore) // compare adjacent players
+                    {
+                        // swap
+                        var temp = sorted[j];
+                        sorted[j] = sorted[j + 1];
+                        sorted[j + 1] = temp;
+                    }
+                }
+            }
+            return sorted;
+        }
+
+    } 
 }
