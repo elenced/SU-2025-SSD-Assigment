@@ -67,7 +67,7 @@ namespace PlayerStatsApp.Controllers // creating a namespace for controllers to 
         {
             var sorted = new List<Player>(players); // create a copy of the original list to sort so it doesnt mutate the original list
 
-            for int i = 0; i < sorted.Count - 1; i++)
+            for (int i = 0; i < sorted.Count - 1; i++)
             {
                 for (int j = 0; j < sorted.Count - i - 1; j++)
                 {

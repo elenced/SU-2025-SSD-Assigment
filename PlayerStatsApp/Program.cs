@@ -4,11 +4,14 @@ using PlayerStatsApp.Models;
 using PlayerStatsApp.Services;
 using System.Linq;
 using System.Security;
+
+
+
 ActivityLog logger = ActivityLog.GetInstance(); // initializing the singleton logger instance to log application activities
 
 FileController fileController = new FileController("players.json"); // creating an instance of the FileController to handle file operations
 PlayerController playerManager = new PlayerController(); // manages player in memory
-PlayerReport reportGenerator = new PlayerReport(); // creating an instance of the PlayerReport to handle report generation
+IReportGenerator reportGenerator = new PlayerReport(); // creating an instance of the PlayerReport to handle report generation
 
 
 var existingPlayers = fileController.LoadPlayers(); // loading existing players from the file using the file controller
@@ -104,15 +107,15 @@ while (running)
             Console.Clear();
             Console.WriteLine("─── ⋅ View all  players! ⋅ ───");
 
-            var players = playerManager.GetAllPlayers(); // retrieving all players from the player Manager
+            var allPlayers = playerManager.GetPlayersSortedByHighScoreManual(); // retrieving all players sorted by high score using bubble sorting method
 
-            if (players.Count == 0)
+            if (allPlayers.Count == 0)
             {
                 Console.WriteLine("No players could be found, please add a player first.");
             }
             else
             {
-                foreach (var player in players) // iterating through each player and displaying their details
+                foreach (var player in allPlayers) // iterating through each player and displaying their details
                 {
                     Console.ForegroundColor = ConsoleColor.DarkBlue;
                     Console.WriteLine("────────────────────────────────────────────────────────────────────");
@@ -365,7 +368,7 @@ while (running)
             }
             else
             {
-                reportGenerator.GenerateSummary(allPlayerForReport);  // generating the player report using the PlayerReport service
+                reportGenerator.GeneratePlayerReport(allPlayerForReport);  // generating the player report using the PlayerReport service
                 logger.Log("Player report generated successfully.");
             }
 

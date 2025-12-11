@@ -55,7 +55,7 @@ namespace PlayerStatsApp.Services
         catch (IOException)
      {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Error saving players to file: {ex.Message}");
+            Console.WriteLine($"Error saving players to file: {ex.Message}");
             Console.ResetColor();
 
             ActivityLog.GetInstance ().Log($"Error saving players to file");

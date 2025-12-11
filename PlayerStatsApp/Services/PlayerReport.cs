@@ -4,9 +4,10 @@ using System.IO;
 using System.Linq;
 using PlayerStatsApp.Models;
 
+
 namespace PlayerStatsApp.Services
 {
-    public class PlayerReport
+    public class PlayerReport : IReportGenerator
     {
         private ActivityLog logger;
         private string reportPath = "player_report.txt";
@@ -15,7 +16,7 @@ namespace PlayerStatsApp.Services
             logger = ActivityLog.GetInstance();
         }
 
-        public void GenerateSummary(List<Player> players)
+        public void GeneratePlayerReport(List<Player> players)
         {
             if (players.Count == 0)
             {
